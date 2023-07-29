@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="musicBean"
-          class="ru.evg.springapp.RockMusic">
+    <bean id="musicBean1"
+          class="ru.evg.springapp.RockMusic"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy">
     </bean>
 
-    <bean id="playMusic"
+    <bean id="musicBean2"
+          class="ru.evg.springapp.ClassicalMusic"
+          scope="prototype"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
+    </bean>
+
+    <bean id="musicBean3"
+          class="ru.evg.springapp.RapMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy">
+    </bean>
+
+    <util:list id="musicList" value-type="ru.evg.springapp.Music">
+        <ref bean="musicBean1" />
+        <ref bean="musicBean2" />
+        <ref bean="musicBean3" />
+    </util:list>
+
+    <bean id="playlist"
           class="ru.evg.springapp.MusicPlayer">
-        <property name="music" ref="musicBean"/>
+        <property name="playlist" ref="musicList"/>
 
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
