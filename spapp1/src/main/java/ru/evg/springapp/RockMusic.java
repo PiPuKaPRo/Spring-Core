@@ -17,8 +17,13 @@ public class RockMusic implements Music{
 //    }
 
     @Override
-    public List<String> getSong() {
+    public List<String> getRandomSong() {
         List<String> rcm = Arrays.asList("Warriors","Rise","222");
         return rcm;
+    }
+
+    @Override
+    public String getSong() {
+        return null;
     }
 }

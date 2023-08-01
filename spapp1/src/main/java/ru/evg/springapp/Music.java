@@ -3,5 +3,6 @@ package ru.evg.springapp;
 import java.util.List;
 
 public interface Music {
-    List<String> getSong();
+    List<String> getRandomSong();
+    String getSong();
 }

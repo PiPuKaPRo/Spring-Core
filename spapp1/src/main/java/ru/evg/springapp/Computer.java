@@ -14,6 +14,6 @@ public class Computer {
     }
     @Override
     public String toString(){
-        return "Computer " + id + " " + mp.playMusic(MusicalGenres.RAP);
+        return "Computer " + id + " " + mp.playMusic(MusicalGenres.CLASSICAL);
     }
 }

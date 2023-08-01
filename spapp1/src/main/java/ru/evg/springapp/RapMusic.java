@@ -16,8 +16,13 @@ public class RapMusic implements Music{
 //        System.out.println("Destroy");
 //    }
     @Override
-    public List<String> getSong(){
+    public List<String> getRandomSong(){
         List<String> rm = Arrays.asList("Konstrukt","Badabum","333");
         return rm;
+    }
+
+    @Override
+    public String getSong() {
+        return null;
     }
 }

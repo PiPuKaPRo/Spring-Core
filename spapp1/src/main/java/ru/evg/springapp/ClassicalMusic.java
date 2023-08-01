@@ -1,29 +1,32 @@
 package ru.evg.springapp;
 
 import org.springframework.stereotype.Component;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Component("someClassicalMusic")
-public class ClassicalMusic implements Music{
+public class ClassicalMusic implements Music {
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("Init");
+    }
 
-//    private ClassicalMusic(){}
-//
-//    public static ClassicalMusic getClassicalMusic(){
-//        return new ClassicalMusic();
-//    }
-//
-//    public void doMyInit(){
-//        System.out.println("Init");
-//    }
-//
-//    public void doMyDestroy(){
-//        System.out.println("Destroy");
-//    }
+    @PreDestroy
+    public void doMyDestroy() {
+        System.out.println("Destroy");
+    }
+
     @Override
-    public List<String> getSong(){
-        List<String> cm = Arrays.asList("Moon sonata","Chelcunchk","111");
+    public List<String> getRandomSong() {
+        List<String> cm = Arrays.asList("Moon sonata", "Chelcunchk", "111");
         return cm;
+    }
+
+    @Override
+    public String getSong() {
+        return null;
     }
 }

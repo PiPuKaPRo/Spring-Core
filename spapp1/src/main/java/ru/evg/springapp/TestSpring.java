@@ -1,17 +1,17 @@
 package ru.evg.springapp;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                "applicationContext.xml"
-        );
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(SpringConfig.class);
 
         Computer c = context.getBean("computer", Computer.class);
         System.out.println(c);
 
-//        MusicPlayer mp = context.getBean("musicPlayer", MusicPlayer.class);
+        MusicPlayer mp = context.getBean("musicPlayer", MusicPlayer.class);
 ////        Music m1 = context.getBean("someRockMusic", Music.class);
 ////        Music m2 = context.getBean("someClassicalMusic", Music.class);
 ////
@@ -23,8 +23,8 @@ public class TestSpring {
 //
 //            mp.playPlayList();
 //
-//        System.out.println(mp.getName());
-//        System.out.println(mp.getVolume());
+        System.out.println(mp.getName());
+        System.out.println(mp.getVolume());
 
         context.close();
     }
