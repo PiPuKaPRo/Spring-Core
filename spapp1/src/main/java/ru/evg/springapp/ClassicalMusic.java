@@ -2,6 +2,9 @@ package ru.evg.springapp;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component("someClassicalMusic")
 public class ClassicalMusic implements Music{
 
@@ -19,7 +22,8 @@ public class ClassicalMusic implements Music{
 //        System.out.println("Destroy");
 //    }
     @Override
-    public String getSong(){
-        return "Moon sonata";
+    public List<String> getSong(){
+        List<String> cm = Arrays.asList("Moon sonata","Chelcunchk","111");
+        return cm;
     }
 }
